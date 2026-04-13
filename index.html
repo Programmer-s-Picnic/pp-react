@@ -1,0 +1,2107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      React + Vite from Ground 0 to Hello World on GitHub Pages | Programmer's
+      Picnic
+    </title>
+
+    <meta
+      name="description"
+      content="A complete beginner-friendly lesson on React + Vite from absolute zero to a Hello World app deployed on GitHub Pages. Includes concepts, commands, file explanations, code samples, workflow, MCQs, checklist, and project practice."
+    />
+    <meta name="theme-color" content="#f59e0b" />
+
+    <script
+      async
+      crossorigin="anonymous"
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8321261883090494"
+    ></script>
+
+    <script src="https://varanasi-software-junction.github.io/search/branding/branding.js"></script>
+    <script src="https://programmer-s-picnic.github.io/json-images/find-on-page.js"></script>
+    <script src="https://programmer-s-picnic.github.io/json-images/contact_champak.js"></script>
+
+    <style>
+      :root {
+        --bg: #fffaf0;
+        --bg-soft: #fff4d6;
+        --bg-strong: #ffedd5;
+        --card: #ffffff;
+        --text: #2b2112;
+        --muted: #6b5a45;
+        --line: rgba(120, 75, 20, 0.16);
+        --brand: #f59e0b;
+        --brand-2: #d97706;
+        --brand-3: #b45309;
+        --ok: #166534;
+        --danger: #b91c1c;
+        --info: #1d4ed8;
+        --shadow: 0 14px 40px rgba(217, 119, 6, 0.12);
+        --radius: 22px;
+        --radius-sm: 16px;
+        --max: 1240px;
+        --code: #111827;
+        --code-2: #1f2937;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+      color: teal !important;
+        margin: 0;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(245, 158, 11, 0.12),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(217, 119, 6, 0.1),
+            transparent 22%
+          ),
+          linear-gradient(180deg, #fff9ef 0%, #fff6e4 100%);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      a {
+        color: var(--brand-3);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 28px));
+        margin: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(16px);
+        background: rgba(255, 250, 240, 0.82);
+        border-bottom: 1px solid rgba(180, 83, 9, 0.12);
+      }
+      .topbar-inner {
+        width: min(var(--max), calc(100% - 28px));
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+      .brand-badge {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #fff;
+        font-size: 22px;
+        box-shadow: var(--shadow);
+        flex: 0 0 auto;
+      }
+      .brand-text {
+        min-width: 0;
+      }
+      .brand-text strong {
+        display: block;
+        font-size: 1rem;
+      }
+      .brand-text span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .chip-btn,
+      .cta,
+      .ghost {
+        border: none;
+        cursor: pointer;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        transition: 0.2s ease;
+      }
+      .chip-btn {
+        background: #fff;
+        color: var(--brand-3);
+        border: 1px solid rgba(180, 83, 9, 0.15);
+      }
+      .chip-btn:hover {
+        transform: translateY(-1px);
+      }
+      .cta {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #fff;
+        box-shadow: var(--shadow);
+      }
+      .ghost {
+        background: rgba(255, 255, 255, 0.75);
+        color: var(--text);
+        border: 1px solid rgba(120, 75, 20, 0.12);
+      }
+
+      .hero {
+        padding: 28px 0 18px;
+      }
+      .hero-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 1.25fr 0.95fr;
+      }
+      .hero-card,
+      .side-card,
+      .section-card,
+      .mini-card,
+      .code-card,
+      .quiz-card,
+      .faq-item,
+      .timeline-item,
+      .task-card {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        color: teal !important;
+      }
+      .hero-card {
+        padding: 28px;
+        background:
+          radial-gradient(
+            circle at 88% 12%,
+            rgba(245, 158, 11, 0.18),
+            transparent 24%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(255, 255, 255, 0.92)
+          );
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--brand-3);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        font-size: 0.84rem;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "DM Sans", Inter, Arial, sans-serif;
+        line-height: 1.15;
+        margin: 0 0 12px;
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+      }
+      h2 {
+        font-size: clamp(1.4rem, 3vw, 2.15rem);
+      }
+      h3 {
+        font-size: 1.18rem;
+      }
+      p {
+        margin: 0 0 14px;
+      }
+      .lead {
+        font-size: 1.06rem;
+        color: #4c3c28;
+        max-width: 65ch;
+      }
+      .hero-pills {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .pill {
+        background: var(--bg-soft);
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        color: #5b4527;
+        padding: 9px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+
+      .side-stack {
+        display: grid;
+        gap: 18px;
+      }
+      .side-card {
+        padding: 18px;
+      }
+      .progress {
+        height: 12px;
+        border-radius: 999px;
+        background: #fde7bc;
+        overflow: hidden;
+        border: 1px solid rgba(180, 83, 9, 0.1);
+      }
+      .progress > span {
+        display: block;
+        height: 100%;
+        width: 18%;
+        background: linear-gradient(90deg, var(--brand), var(--brand-2));
+        border-radius: 999px;
+      }
+
+      .toc {
+        padding: 18px;
+      }
+      .toc h3 {
+        margin-bottom: 10px;
+      }
+      .toc a {
+        display: block;
+        padding: 10px 12px;
+        margin: 7px 0;
+        border-radius: 12px;
+        color: var(--text);
+        background: #fffaf1;
+        border: 1px solid rgba(180, 83, 9, 0.1);
+        font-weight: 600;
+      }
+      .toc a:hover {
+        background: #fff1cf;
+        text-decoration: none;
+      }
+
+      .grid-3,
+      .grid-2,
+      .cards {
+        display: grid;
+        gap: 18px;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cards {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      section {
+        padding: 12px 0 18px;
+      }
+      .section-card {
+        padding: 24px;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 84px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #fff5da;
+        color: var(--brand-3);
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+
+      .mini-card {
+        padding: 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.96),
+          rgba(255, 247, 232, 0.92)
+        );
+      }
+      .mini-card h3 {
+        margin-bottom: 8px;
+      }
+      .icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        background: linear-gradient(135deg, #ffd27e, #f59e0b);
+        color: #7c2d12;
+        margin-bottom: 12px;
+        box-shadow: 0 10px 24px rgba(245, 158, 11, 0.18);
+      }
+
+      .code-card {
+        overflow: hidden;
+        background: linear-gradient(180deg, #202738, #131927);
+        color: #eef2ff;
+      }
+      .code-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+      .dots span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dots span:nth-child(1) {
+        background: #fb7185;
+      }
+      .dots span:nth-child(2) {
+        background: #fbbf24;
+      }
+      .dots span:nth-child(3) {
+        background: #34d399;
+      }
+      .code-title {
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: #f9d38b;
+      }
+      pre {
+        margin: 0;
+        padding: 18px;
+        overflow: auto;
+        font:
+          14px/1.65 Consolas,
+          Monaco,
+          monospace;
+        white-space: pre;
+      }
+      code {
+        font-family: Consolas, Monaco, monospace;
+      }
+
+      .steps {
+        display: grid;
+        gap: 16px;
+      }
+      .step {
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        border-radius: 18px;
+        padding: 18px;
+        background: linear-gradient(180deg, #fff, #fff8eb);
+      }
+      .step-num {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #fff;
+        font-weight: 800;
+        margin-bottom: 12px;
+        box-shadow: 0 10px 22px rgba(245, 158, 11, 0.18);
+      }
+
+      .callout {
+        border-left: 6px solid var(--brand);
+        background: #fff7e5;
+        border-radius: 16px;
+        padding: 16px 16px 16px 18px;
+        color: #5d482c;
+        margin: 14px 0;
+      }
+      .callout.info {
+        border-left-color: var(--info);
+        background: #eff6ff;
+        color: #1e3a8a;
+      }
+      .callout.ok {
+        border-left-color: var(--ok);
+        background: #effcf3;
+        color: #166534;
+      }
+      .callout.warn {
+        border-left-color: #b45309;
+        background: #fff8e7;
+        color: #8a4b08;
+      }
+      .callout.danger {
+        border-left-color: var(--danger);
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 10px;
+        margin: 14px 0 4px;
+      }
+      .check {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: #fff9ef;
+        border: 1px solid rgba(180, 83, 9, 0.1);
+      }
+      .check b {
+        color: var(--ok);
+        font-size: 1.05rem;
+        line-height: 1.2;
+      }
+
+      .flow {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 10px;
+      }
+      .flow .mini-card {
+        text-align: center;
+        position: relative;
+      }
+      .flow .mini-card:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--brand-2);
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 14px;
+      }
+      .timeline-item {
+        padding: 16px 18px;
+        display: grid;
+        grid-template-columns: 86px 1fr;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .time-badge {
+        background: #fff0c9;
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        color: var(--brand-3);
+        border-radius: 14px;
+        padding: 10px 12px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .quiz-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .quiz-card {
+        padding: 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.96),
+          rgba(255, 244, 224, 0.95)
+        );
+      }
+      .quiz-card h4 {
+        margin-bottom: 12px;
+      }
+      .quiz-options {
+        display: grid;
+        gap: 10px;
+      }
+      .quiz-options label {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        background: #fffdf8;
+        cursor: pointer;
+      }
+      .quiz-options input {
+        margin-top: 3px;
+      }
+      .quiz-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .score-box {
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 16px;
+        background: #fff8ea;
+        border: 1px dashed rgba(180, 83, 9, 0.26);
+        font-weight: 800;
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 14px;
+      }
+      .faq-item {
+        padding: 18px;
+      }
+      .faq-item summary {
+        cursor: pointer;
+        font-weight: 800;
+        color: #3f2d15;
+        list-style: none;
+      }
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-item summary::after {
+        content: "+";
+        float: right;
+        color: var(--brand-2);
+        font-size: 1.2rem;
+      }
+      .faq-item[open] summary::after {
+        content: "−";
+      }
+
+      .footer {
+        padding: 28px 0 60px;
+      }
+      .footer-card {
+        background: linear-gradient(135deg, #fffaf0, #ffe8b5);
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .two-col-note {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .table-wrap {
+        overflow: auto;
+        border-radius: 18px;
+        border: 1px solid rgba(180, 83, 9, 0.12);
+        background: #fff;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 760px;
+      }
+      th,
+      td {
+        padding: 14px 12px;
+        border-bottom: 1px solid rgba(180, 83, 9, 0.12);
+        text-align: left;
+      }
+      th {
+        background: #fff3d1;
+        color: #693d0c;
+        font-family: "DM Sans", Inter, sans-serif;
+      }
+
+      .back-top {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 40;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #fff;
+        font-size: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+      .center {
+        text-align: center;
+      }
+      .mb0 {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 1080px) {
+        .hero-grid,
+        .grid-3,
+        .grid-2,
+        .quiz-grid,
+        .two-col-note,
+        .flow {
+          grid-template-columns: 1fr;
+        }
+        .flow .mini-card:not(:last-child)::after {
+          display: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .top-actions {
+          width: 100%;
+          justify-content: flex-start;
+        }
+        .hero-card,
+        .section-card {
+          padding: 18px;
+        }
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+        .time-badge {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-badge">⚛️</div>
+          <div class="brand-text">
+            <strong data-pp-speak-title>Programmer's Picnic</strong>
+            <span>React + Vite • Ground 0 to GitHub Pages</span>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <button
+            class="chip-btn"
+            onclick="
+              document
+                .getElementById('toc')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            Jump to Contents
+          </button>
+          <button class="ghost" onclick="window.print()">Print</button>
+          <button
+            class="cta"
+            onclick="
+              document
+                .getElementById('quiz')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            Take MCQ Test
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow" id="speak0">
+            🚀 Beginner Friendly Premium Lesson
+          </div>
+          <h1 id="speak1">
+            React + Vite from absolute zero to a Hello World app on GitHub Pages
+          </h1>
+          <p class="lead" id="speak2">
+            In this lesson we will start from the very beginning. We will
+            understand what React is, what Vite is, why they are used together,
+            how to create a project, how the files work, how to run the app on
+            your own machine, how to build the project, and finally how to
+            deploy it to GitHub Pages.
+          </p>
+          <p class="lead" id="speak3">
+            Our target repository in this lesson is
+            <strong>Programmer-s-Picnic / pp-react</strong>, so the deployed app
+            path will be <strong>/pp-react/</strong>.
+          </p>
+          <div class="hero-pills">
+            <div class="pill">Level: Ground 0</div>
+            <div class="pill">Goal: Hello World</div>
+            <div class="pill">Deploy: GitHub Pages</div>
+            <div class="pill">Stack: React + Vite</div>
+          </div>
+        </div>
+
+        <div class="side-stack">
+          <div class="side-card">
+            <h3 id="speak4">What you will achieve</h3>
+            <p id="speak5">
+              By the end of this lesson you will have a working React project
+              created by Vite, running locally, built for production, and
+              published to GitHub Pages.
+            </p>
+            <div class="progress" aria-label="lesson progress preview">
+              <span></span>
+            </div>
+            <p class="muted" style="margin-top: 10px" id="speak6">
+              This lesson begins at zero and moves carefully, step by step.
+            </p>
+          </div>
+
+          <div class="side-card toc" id="toc">
+            <h3 id="speak7">Lesson contents</h3>
+            <a href="#intro">1. Introduction</a>
+            <a href="#concepts">2. React and Vite explained</a>
+            <a href="#requirements">3. What we need first</a>
+            <a href="#create-project">4. Create the project</a>
+            <a href="#files">5. Understand the files</a>
+            <a href="#hello-world">6. Build Hello World</a>
+            <a href="#build-deploy">7. Build and deploy</a>
+            <a href="#pages">8. GitHub Pages setup</a>
+            <a href="#commands">9. Commands explained</a>
+            <a href="#mistakes">10. Common mistakes</a>
+            <a href="#quiz">11. MCQ test</a>
+            <a href="#practice">12. Practice tasks</a>
+            <a href="#faq">13. FAQ</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="intro">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak8">Section 1</div>
+              <h2 id="speak9">Introduction: what are we trying to do?</h2>
+            </div>
+            <div class="tag">Start</div>
+          </div>
+
+          <p id="speak10">
+            Let us begin with the final picture. We want to create a React
+            application, run it on our computer, see a simple Hello World page,
+            and then publish it so that anybody can open it in a browser using
+            GitHub Pages.
+          </p>
+          <p id="speak11">
+            A beginner often sees too many things at once: Node, npm, React,
+            Vite, build, Git, GitHub, and Pages. That can feel confusing. So we
+            will not rush. We will take them one by one.
+          </p>
+
+          <div class="flow">
+            <div class="mini-card">
+              <div class="icon">1</div>
+              <h3 id="speak12">Write React</h3>
+              <p id="speak13">We write components using JSX.</p>
+            </div>
+            <div class="mini-card">
+              <div class="icon">2</div>
+              <h3 id="speak14">Run with Vite</h3>
+              <p id="speak15">We use the dev server to test locally.</p>
+            </div>
+            <div class="mini-card">
+              <div class="icon">3</div>
+              <h3 id="speak16">Build files</h3>
+              <p id="speak17">Vite creates the production output.</p>
+            </div>
+            <div class="mini-card">
+              <div class="icon">4</div>
+              <h3 id="speak18">Publish</h3>
+              <p id="speak19">GitHub Pages serves the built files.</p>
+            </div>
+          </div>
+
+          <div class="callout ok" id="speak20">
+            Important beginner truth: you do not need to understand everything
+            perfectly before starting. You only need to understand the current
+            step clearly.
+          </div>
+        </div>
+      </section>
+
+      <section id="concepts">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak21">Section 2</div>
+              <h2 id="speak22">What React and Vite actually are</h2>
+            </div>
+            <div class="tag">Concepts</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini-card">
+              <div class="icon">⚛️</div>
+              <h3 id="speak23">What is React?</h3>
+              <p id="speak24">
+                React is a JavaScript library for building user interfaces.
+                Instead of manually changing HTML again and again, we build
+                small reusable units called components. A component can
+                represent a title, a button, a card, a form, or even a complete
+                page.
+              </p>
+              <p id="speak25">
+                React lets us describe what the UI should look like for the
+                current data. Then React updates the page when the data changes.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <div class="icon">⚡</div>
+              <h3 id="speak26">What is Vite?</h3>
+              <p id="speak27">
+                Vite is the tool that helps us develop and build the React
+                project. It gives us a very fast development server and also
+                creates the production-ready files for deployment.
+              </p>
+              <p id="speak28">
+                Think of Vite as the workshop around React. React is the UI
+                library. Vite is the tool that runs the workshop efficiently.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout info" id="speak29">
+            A simple way to remember this: React is what we build with. Vite is
+            what helps us run and package it.
+          </div>
+
+          <div class="grid-3">
+            <div class="mini-card">
+              <h3 id="speak30">HTML</h3>
+              <p id="speak31">Gives the structure of the page.</p>
+            </div>
+            <div class="mini-card">
+              <h3 id="speak32">CSS</h3>
+              <p id="speak33">Gives the style, color, spacing, and layout.</p>
+            </div>
+            <div class="mini-card">
+              <h3 id="speak34">JavaScript + React</h3>
+              <p id="speak35">Gives the page behavior and component logic.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="requirements">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak36">Section 3</div>
+              <h2 id="speak37">What we need before we begin</h2>
+            </div>
+            <div class="tag">Setup</div>
+          </div>
+
+          <div class="cards">
+            <div class="mini-card">
+              <div class="icon">🟢</div>
+              <h3 id="speak38">Node.js</h3>
+              <p id="speak39">
+                Node.js lets us run JavaScript tools outside the browser. We
+                need it so that npm and Vite commands work on our machine.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <div class="icon">📦</div>
+              <h3 id="speak40">npm</h3>
+              <p id="speak41">
+                npm is the package manager that installs the libraries and tools
+                our project needs.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <div class="icon">🧰</div>
+              <h3 id="speak42">A code editor</h3>
+              <p id="speak43">
+                You can use Visual Studio Code or any editor you like. We need a
+                place to open and edit the files.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <div class="icon">🌐</div>
+              <h3 id="speak44">GitHub account</h3>
+              <p id="speak45">
+                We need a GitHub account so we can push the code to a repository
+                and publish it with GitHub Pages.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout warn" id="speak46">
+            If a command does not run, the very first thing to check is whether
+            Node.js was installed correctly.
+          </div>
+
+          <div class="code-card">
+            <div class="code-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="code-title">Check Node and npm</div>
+            </div>
+            <pre><code>node -v
+npm -v</code></pre>
+          </div>
+
+          <p id="speak47" style="margin-top: 14px">
+            If both commands show version numbers, your machine is ready for the
+            next step.
+          </p>
+        </div>
+      </section>
+
+      <section id="create-project">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak48">Section 4</div>
+              <h2 id="speak49">Create your first React + Vite project</h2>
+            </div>
+            <div class="tag">Create</div>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <h3 id="speak50">
+                Open terminal in the folder where you want the project
+              </h3>
+              <p id="speak51">
+                Choose a folder where you keep your development work. Then open
+                terminal there.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <h3 id="speak52">Run the Vite create command</h3>
+              <p id="speak53">
+                This command creates a new Vite project named
+                <strong>pp-react</strong> using the React template.
+              </p>
+              <div class="code-card">
+                <div class="code-head">
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="code-title">Create the project</div>
+                </div>
+                <pre><code>npm create vite@latest pp-react -- --template react</code></pre>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <h3 id="speak54">Move into the new project folder</h3>
+              <div class="code-card">
+                <div class="code-head">
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="code-title">Go into the project</div>
+                </div>
+                <pre><code>cd pp-react</code></pre>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">4</div>
+              <h3 id="speak55">Install dependencies</h3>
+              <p id="speak56">
+                This downloads the libraries and tools the project needs to run.
+              </p>
+              <div class="code-card">
+                <div class="code-head">
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="code-title">Install packages</div>
+                </div>
+                <pre><code>npm install</code></pre>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">5</div>
+              <h3 id="speak57">Start the development server</h3>
+              <p id="speak58">
+                This runs the project locally so that you can see it in your
+                browser while you develop it.
+              </p>
+              <div class="code-card">
+                <div class="code-head">
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="code-title">Run locally</div>
+                </div>
+                <pre><code>npm run dev</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout ok" id="speak59">
+            After running <strong>npm run dev</strong>, Vite will show a local
+            URL such as <strong>http://localhost:5173/</strong>. Open that in
+            your browser.
+          </div>
+        </div>
+      </section>
+
+      <section id="files">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak60">Section 5</div>
+              <h2 id="speak61">Understand the project files like a beginner</h2>
+            </div>
+            <div class="tag">Files</div>
+          </div>
+
+          <div class="code-card">
+            <div class="code-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="code-title">Typical project structure</div>
+            </div>
+            <pre><code>pp-react/
+├── node_modules/
+├── public/
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── index.css
+│   └── assets/
+├── index.html
+├── package.json
+└── vite.config.js</code></pre>
+          </div>
+
+          <div class="two-col-note" style="margin-top: 18px">
+            <div class="mini-card">
+              <h3 id="speak62">index.html</h3>
+              <p id="speak63">
+                This is the main HTML page. React will finally render into an
+                element inside this file.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak64">src/main.jsx</h3>
+              <p id="speak65">
+                This is where React starts. It connects the React app to the
+                HTML page.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak66">src/App.jsx</h3>
+              <p id="speak67">
+                This is your main component. We will place the Hello World
+                content here.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak68">vite.config.js</h3>
+              <p id="speak69">
+                This contains Vite configuration. For GitHub Pages, the
+                <strong>base</strong> value is very important.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout" id="speak70">
+            Do not fear the file structure. At the beginning, the only files you
+            truly need to care about are
+            <strong>App.jsx</strong>, <strong>main.jsx</strong>,
+            <strong>index.html</strong>, and <strong>vite.config.js</strong>.
+          </div>
+        </div>
+      </section>
+
+      <section id="hello-world">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak71">Section 6</div>
+              <h2 id="speak72">Create the Hello World app</h2>
+            </div>
+            <div class="tag">Code</div>
+          </div>
+
+          <p id="speak73">
+            We will now replace the default starter code with a small clear
+            component.
+          </p>
+
+          <div class="grid-2">
+            <div class="code-card">
+              <div class="code-head">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <div class="code-title">src/App.jsx</div>
+              </div>
+              <pre><code>export default function App() {
+  return (
+    &lt;main style={{ fontFamily: 'Arial, sans-serif', padding: '40px' }}&gt;
+      &lt;h1&gt;Hello World&lt;/h1&gt;
+      &lt;p&gt;Welcome to my first React + Vite app.&lt;/p&gt;
+      &lt;p&gt;This app will be deployed on GitHub Pages.&lt;/p&gt;
+    &lt;/main&gt;
+  )
+}</code></pre>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak74">What is this code doing?</h3>
+              <p id="speak75">
+                This file exports a function named <strong>App</strong>. That
+                function returns JSX. JSX looks like HTML, but it is written
+                inside JavaScript.
+              </p>
+              <p id="speak76">
+                React reads this and creates the page you see in the browser.
+                The heading and paragraphs become real HTML in the browser.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top: 18px">
+            <div class="code-card">
+              <div class="code-head">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <div class="code-title">src/main.jsx</div>
+              </div>
+              <pre><code>import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+)</code></pre>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak77">What does main.jsx do?</h3>
+              <p id="speak78">
+                It imports the App component and tells React to render it inside
+                the HTML element whose id is <strong>root</strong>.
+              </p>
+              <p id="speak79">
+                So App is the thing you wrote, and main.jsx is the thing that
+                places it on the page.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout ok" id="speak80">
+            Save the file while <strong>npm run dev</strong> is running. The
+            browser usually updates immediately. This is one of the nice things
+            about modern frontend tools.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak81">Section 7</div>
+              <h2 id="speak82">
+                A little more understanding: component, props, state
+              </h2>
+            </div>
+            <div class="tag">Core Ideas</div>
+          </div>
+
+          <div class="cards">
+            <div class="mini-card">
+              <h3 id="speak83">Component</h3>
+              <p id="speak84">
+                A component is a reusable piece of the interface. App is a
+                component.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak85">Props</h3>
+              <p id="speak86">
+                Props are values passed into a component, almost like inputs to
+                a function.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak87">State</h3>
+              <p id="speak88">
+                State is data inside a component that can change over time and
+                cause the UI to update.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-card" style="margin-top: 18px">
+            <div class="code-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="code-title">Simple state example</div>
+            </div>
+            <pre><code>import { useState } from 'react'
+
+export default function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    &lt;main style={{ fontFamily: 'Arial, sans-serif', padding: '40px' }}&gt;
+      &lt;h1&gt;Hello World&lt;/h1&gt;
+      &lt;p&gt;You clicked the button {count} times.&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/main&gt;
+  )
+}</code></pre>
+          </div>
+
+          <p id="speak89" style="margin-top: 14px">
+            This example is not required for deployment, but it shows the real
+            power of React: the page changes when the state changes.
+          </p>
+        </div>
+      </section>
+
+      <section id="build-deploy">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak90">Section 8</div>
+              <h2 id="speak91">Build the project for production</h2>
+            </div>
+            <div class="tag">Build</div>
+          </div>
+
+          <p id="speak92">
+            Running locally and building for production are not exactly the same
+            thing. During development, Vite runs a dev server. For deployment,
+            we need the production files.
+          </p>
+
+          <div class="grid-2">
+            <div class="code-card">
+              <div class="code-head">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <div class="code-title">Create production build</div>
+              </div>
+              <pre><code>npm run build</code></pre>
+            </div>
+
+            <div class="code-card">
+              <div class="code-head">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <div class="code-title">Preview production build</div>
+              </div>
+              <pre><code>npm run preview</code></pre>
+            </div>
+          </div>
+
+          <div class="callout info" id="speak93">
+            After <strong>npm run build</strong>, Vite creates a folder named
+            <strong>dist</strong>. That folder contains the optimized files that
+            will go to GitHub Pages.
+          </div>
+        </div>
+      </section>
+
+      <section id="pages">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak94">Section 9</div>
+              <h2 id="speak95">Prepare the app for GitHub Pages</h2>
+            </div>
+            <div class="tag">Pages</div>
+          </div>
+
+          <p id="speak96">
+            Since our repository name is <strong>pp-react</strong>, the site
+            will be hosted inside a subfolder. That means the app path is not
+            just the main domain. It is the main domain plus
+            <strong>/pp-react/</strong>.
+          </p>
+
+          <div class="callout danger" id="speak97">
+            If you forget the base path, your CSS and JavaScript may fail to
+            load after deployment. This is one of the biggest beginner mistakes.
+          </div>
+
+          <div class="code-card">
+            <div class="code-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="code-title">vite.config.js</div>
+            </div>
+            <pre><code>import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/pp-react/',
+})</code></pre>
+          </div>
+
+          <p id="speak98" style="margin-top: 14px">
+            That one line, <strong>base: '/pp-react/'</strong>, tells Vite where
+            the app will live after deployment.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak99">Section 10</div>
+              <h2 id="speak100">Push the project to GitHub</h2>
+            </div>
+            <div class="tag">Git</div>
+          </div>
+
+          <p id="speak101">
+            Now we create or use the repository
+            <strong>Programmer-s-Picnic / pp-react</strong> and connect our
+            local project to it.
+          </p>
+
+          <div class="code-card">
+            <div class="code-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="code-title">Git commands</div>
+            </div>
+            <pre><code>git init
+git add .
+git commit -m "Initial React Vite app"
+git branch -M main
+git remote add origin https://github.com/Programmer-s-Picnic/pp-react.git
+git push -u origin main</code></pre>
+          </div>
+
+          <div class="callout ok" id="speak102">
+            After this push, your code is on GitHub. The next job is to make
+            GitHub build and publish it.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak103">Section 11</div>
+              <h2 id="speak104">Deploy with GitHub Actions</h2>
+            </div>
+            <div class="tag">Deploy</div>
+          </div>
+
+          <p id="speak105">
+            We will add a workflow file. This workflow tells GitHub what to do
+            whenever code is pushed to the main branch.
+          </p>
+
+          <div class="code-card">
+            <div class="code-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="code-title">.github/workflows/deploy.yml</div>
+            </div>
+            <pre><code>name: Deploy React to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4</code></pre>
+          </div>
+
+          <div class="timeline" style="margin-top: 18px">
+            <div class="timeline-item">
+              <div class="time-badge">Step A</div>
+              <div>
+                <h3 id="speak106">GitHub downloads your code</h3>
+                <p id="speak107">
+                  The workflow starts and checks out your repository.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="time-badge">Step B</div>
+              <div>
+                <h3 id="speak108">GitHub installs Node and your packages</h3>
+                <p id="speak109">
+                  It prepares the same kind of environment needed to build the
+                  project.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="time-badge">Step C</div>
+              <div>
+                <h3 id="speak110">GitHub runs the build</h3>
+                <p id="speak111">
+                  The <strong>dist</strong> folder is created.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="time-badge">Step D</div>
+              <div>
+                <h3 id="speak112">GitHub Pages publishes the result</h3>
+                <p id="speak113">Your site becomes available online.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak114">Section 12</div>
+              <h2 id="speak115">Enable GitHub Pages in repository settings</h2>
+            </div>
+            <div class="tag">Settings</div>
+          </div>
+
+          <div class="checklist">
+            <div class="check">
+              <b>✔</b>
+              <div id="speak116">Open the repository on GitHub.</div>
+            </div>
+            <div class="check">
+              <b>✔</b>
+              <div id="speak117">Go to <strong>Settings</strong>.</div>
+            </div>
+            <div class="check">
+              <b>✔</b>
+              <div id="speak118">
+                Open <strong>Pages</strong> from the side menu.
+              </div>
+            </div>
+            <div class="check">
+              <b>✔</b>
+              <div id="speak119">
+                Set the source to <strong>GitHub Actions</strong>.
+              </div>
+            </div>
+            <div class="check">
+              <b>✔</b>
+              <div id="speak120">
+                Push your code again if needed so the workflow runs.
+              </div>
+            </div>
+          </div>
+
+          <div class="callout ok" id="speak121">
+            After deployment, your final URL should be:
+            <strong>https://programmer-s-picnic.github.io/pp-react/</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="commands">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak122">Section 13</div>
+              <h2 id="speak123">All important commands explained simply</h2>
+            </div>
+            <div class="tag">Commands</div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Meaning</th>
+                  <th>Why we use it</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>node -v</code></td>
+                  <td>Show Node version</td>
+                  <td>Checks whether Node is installed</td>
+                </tr>
+                <tr>
+                  <td><code>npm -v</code></td>
+                  <td>Show npm version</td>
+                  <td>Checks whether npm is available</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      >npm create vite@latest pp-react -- --template react</code
+                    >
+                  </td>
+                  <td>Create a new Vite project</td>
+                  <td>Starts the React + Vite app</td>
+                </tr>
+                <tr>
+                  <td><code>cd pp-react</code></td>
+                  <td>Enter project folder</td>
+                  <td>Lets us work inside the project</td>
+                </tr>
+                <tr>
+                  <td><code>npm install</code></td>
+                  <td>Install packages</td>
+                  <td>Downloads all dependencies</td>
+                </tr>
+                <tr>
+                  <td><code>npm run dev</code></td>
+                  <td>Start development server</td>
+                  <td>Lets us see the app locally</td>
+                </tr>
+                <tr>
+                  <td><code>npm run build</code></td>
+                  <td>Create production build</td>
+                  <td>Generates the files for deployment</td>
+                </tr>
+                <tr>
+                  <td><code>npm run preview</code></td>
+                  <td>Preview built app</td>
+                  <td>Tests the production build locally</td>
+                </tr>
+                <tr>
+                  <td><code>git add .</code></td>
+                  <td>Stage all changes</td>
+                  <td>Prepares files for commit</td>
+                </tr>
+                <tr>
+                  <td><code>git commit -m "message"</code></td>
+                  <td>Create a commit</td>
+                  <td>Saves a snapshot in Git</td>
+                </tr>
+                <tr>
+                  <td><code>git push</code></td>
+                  <td>Push code to GitHub</td>
+                  <td>Uploads your project online</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="mistakes">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak124">Section 14</div>
+              <h2 id="speak125">Common beginner mistakes and exact fixes</h2>
+            </div>
+            <div class="tag">Debug</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini-card">
+              <h3 id="speak126">Mistake: command not found</h3>
+              <p id="speak127">
+                This usually means Node.js was not installed or terminal was not
+                restarted after installation.
+              </p>
+              <p id="speak128">
+                <strong>Fix:</strong> install Node.js, restart terminal, then
+                run <code>node -v</code>.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak129">Mistake: site looks broken after deployment</h3>
+              <p id="speak130">
+                This usually happens when the base path is wrong.
+              </p>
+              <p id="speak131">
+                <strong>Fix:</strong> in <code>vite.config.js</code> use
+                <code>base: '/pp-react/'</code>.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak132">Mistake: GitHub Actions does not publish</h3>
+              <p id="speak133">
+                The repository may still be using a branch source instead of
+                workflow deployment.
+              </p>
+              <p id="speak134">
+                <strong>Fix:</strong> go to
+                <strong>Settings → Pages</strong> and choose
+                <strong>GitHub Actions</strong>.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3 id="speak135">Mistake: changes do not appear online</h3>
+              <p id="speak136">
+                Sometimes the build was not triggered because the code was not
+                pushed.
+              </p>
+              <p id="speak137">
+                <strong>Fix:</strong> run <code>git add .</code>,
+                <code>git commit -m "update"</code>, and <code>git push</code>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak138">Section 15</div>
+              <h2 id="speak139">MCQ test: check your understanding</h2>
+            </div>
+            <div class="tag">Quiz</div>
+          </div>
+
+          <p id="speak140">
+            Answer the questions below and then press the check button.
+          </p>
+
+          <div class="quiz-grid">
+            <div class="quiz-card" data-answer="b">
+              <h4 id="speak141">1. What is React mainly used for?</h4>
+              <div class="quiz-options">
+                <label
+                  ><input type="radio" name="q1" value="a" /> Writing only CSS
+                  styles</label
+                >
+                <label
+                  ><input type="radio" name="q1" value="b" /> Building user
+                  interfaces with components</label
+                >
+                <label
+                  ><input type="radio" name="q1" value="c" /> Replacing GitHub
+                  completely</label
+                >
+              </div>
+            </div>
+
+            <div class="quiz-card" data-answer="c">
+              <h4 id="speak142">2. What does Vite help us do?</h4>
+              <div class="quiz-options">
+                <label
+                  ><input type="radio" name="q2" value="a" /> Install
+                  Windows</label
+                >
+                <label
+                  ><input type="radio" name="q2" value="b" /> Draw diagrams
+                  only</label
+                >
+                <label
+                  ><input type="radio" name="q2" value="c" /> Run the dev server
+                  and build the app</label
+                >
+              </div>
+            </div>
+
+            <div class="quiz-card" data-answer="a">
+              <h4 id="speak143">
+                3. Which file usually contains the main component?
+              </h4>
+              <div class="quiz-options">
+                <label
+                  ><input type="radio" name="q3" value="a" /> App.jsx</label
+                >
+                <label
+                  ><input type="radio" name="q3" value="b" />
+                  package-lock.json</label
+                >
+                <label
+                  ><input type="radio" name="q3" value="c" /> README.png</label
+                >
+              </div>
+            </div>
+
+            <div class="quiz-card" data-answer="b">
+              <h4 id="speak144">
+                4. Which command starts the development server?
+              </h4>
+              <div class="quiz-options">
+                <label
+                  ><input type="radio" name="q4" value="a" /> npm run
+                  build</label
+                >
+                <label
+                  ><input type="radio" name="q4" value="b" /> npm run dev</label
+                >
+                <label
+                  ><input type="radio" name="q4" value="c" /> npm run
+                  sleep</label
+                >
+              </div>
+            </div>
+
+            <div class="quiz-card" data-answer="c">
+              <h4 id="speak145">
+                5. Which folder contains the production build?
+              </h4>
+              <div class="quiz-options">
+                <label><input type="radio" name="q5" value="a" /> src</label>
+                <label><input type="radio" name="q5" value="b" /> public</label>
+                <label><input type="radio" name="q5" value="c" /> dist</label>
+              </div>
+            </div>
+
+            <div class="quiz-card" data-answer="a">
+              <h4 id="speak146">
+                6. For this repo, what should the Vite base be?
+              </h4>
+              <div class="quiz-options">
+                <label
+                  ><input type="radio" name="q6" value="a" /> /pp-react/</label
+                >
+                <label
+                  ><input type="radio" name="q6" value="b" /> /hello/</label
+                >
+                <label
+                  ><input type="radio" name="q6" value="c" /> /github/</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="cta" onclick="checkQuiz()">Check Answers</button>
+            <button class="ghost" onclick="resetQuiz()">Reset Quiz</button>
+          </div>
+
+          <div class="score-box" id="quizResult">
+            Your score will appear here.
+          </div>
+        </div>
+      </section>
+
+      <section id="practice">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak147">Section 16</div>
+              <h2 id="speak148">Practice tasks for you</h2>
+            </div>
+            <div class="tag">Practice</div>
+          </div>
+
+          <div class="cards">
+            <div class="task-card mini-card">
+              <h3 id="speak149">Task 1</h3>
+              <p id="speak150">
+                Change the heading from Hello World to Hello Programmer's
+                Picnic.
+              </p>
+            </div>
+
+            <div class="task-card mini-card">
+              <h3 id="speak151">Task 2</h3>
+              <p id="speak152">
+                Add a new paragraph that says this is your first deployed React
+                project.
+              </p>
+            </div>
+
+            <div class="task-card mini-card">
+              <h3 id="speak153">Task 3</h3>
+              <p id="speak154">
+                Add one button under the text and make it show an alert when
+                clicked.
+              </p>
+            </div>
+
+            <div class="task-card mini-card">
+              <h3 id="speak155">Task 4</h3>
+              <p id="speak156">
+                Change the inline style to make the text more colorful and the
+                page padding larger.
+              </p>
+            </div>
+
+            <div class="task-card mini-card">
+              <h3 id="speak157">Task 5</h3>
+              <p id="speak158">
+                Push the changes to GitHub and verify that the live site
+                updates.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout" id="speak159">
+            Real learning begins when you edit, break, fix, and rebuild the app
+            yourself.
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak160">Section 17</div>
+              <h2 id="speak161">Frequently asked questions</h2>
+            </div>
+            <div class="tag">FAQ</div>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary id="speak162">
+                Do I need to understand React deeply before using Vite?
+              </summary>
+              <p id="speak163" style="margin-top: 12px">
+                No. Vite is simply the tool around your project. You can begin
+                with very basic React knowledge and still use Vite comfortably.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary id="speak164">Why do we need npm install?</summary>
+              <p id="speak165" style="margin-top: 12px">
+                Because the project depends on packages such as React, React
+                DOM, and Vite. npm install downloads them.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary id="speak166">
+                Why is the base path so important for GitHub Pages?
+              </summary>
+              <p id="speak167" style="margin-top: 12px">
+                Because your app is not deployed at the root domain. It is
+                deployed inside the repo path, so asset URLs must point there.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary id="speak168">
+                Can I keep improving the app after deployment?
+              </summary>
+              <p id="speak169" style="margin-top: 12px">
+                Yes. That is the normal workflow. Edit locally, test locally,
+                commit, and push. GitHub Actions can deploy the updated version.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary id="speak170">
+                What should I learn next after Hello World?
+              </summary>
+              <p id="speak171" style="margin-top: 12px">
+                Learn JSX, components, props, useState, event handling, lists,
+                forms, routing, and fetching data.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="footer">
+        <div class="footer-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" id="speak172">Final Wrap Up</div>
+              <h2 id="speak173">
+                You now know the complete path from zero to deployment
+              </h2>
+            </div>
+            <div class="tag">Finish</div>
+          </div>
+
+          <p id="speak174">
+            In this lesson, you learned what React is, what Vite is, how to
+            create a project, how the basic files work, how to run the
+            development server, how to create a Hello World app, how to build
+            the production files, and how to deploy them to GitHub Pages.
+          </p>
+
+          <p id="speak175">
+            That is a real frontend workflow. It may look simple, but it is a
+            strong beginning. Once this becomes comfortable, you are ready for
+            the next stage of React development.
+          </p>
+
+          <div class="hero-pills">
+            <div class="pill">Create</div>
+            <div class="pill">Run</div>
+            <div class="pill">Build</div>
+            <div class="pill">Push</div>
+            <div class="pill">Deploy</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button
+      class="back-top"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      aria-label="Back to top"
+    >
+      ↑
+    </button>
+
+    <script>
+      function checkQuiz() {
+        const cards = Array.from(document.querySelectorAll(".quiz-card"));
+        let score = 0;
+        let attempted = 0;
+
+        cards.forEach((card) => {
+          const answer = card.getAttribute("data-answer");
+          const checked = card.querySelector('input[type="radio"]:checked');
+
+          card.style.borderColor = "rgba(180,83,9,.12)";
+          card.style.boxShadow = "";
+
+          if (checked) {
+            attempted++;
+            if (checked.value === answer) {
+              score++;
+              card.style.borderColor = "rgba(22,101,52,.35)";
+              card.style.boxShadow = "0 0 0 3px rgba(22,101,52,.08)";
+            } else {
+              card.style.borderColor = "rgba(185,28,28,.32)";
+              card.style.boxShadow = "0 0 0 3px rgba(185,28,28,.06)";
+            }
+          }
+        });
+
+        const result = document.getElementById("quizResult");
+        let message = "You scored " + score + " out of " + cards.length + ". ";
+
+        if (attempted < cards.length) {
+          message += "You answered " + attempted + " question(s).";
+        } else if (score === cards.length) {
+          message += "Excellent. You understood the lesson very well.";
+        } else if (score >= 4) {
+          message += "Good work. Revise the weak areas once more.";
+        } else {
+          message += "Read the lesson again slowly and try once more.";
+        }
+
+        result.textContent = message;
+      }
+
+      function resetQuiz() {
+        document
+          .querySelectorAll('.quiz-card input[type="radio"]')
+          .forEach((input) => {
+            input.checked = false;
+          });
+
+        document.querySelectorAll(".quiz-card").forEach((card) => {
+          card.style.borderColor = "rgba(180,83,9,.12)";
+          card.style.boxShadow = "";
+        });
+
+        document.getElementById("quizResult").textContent =
+          "Your score will appear here.";
+      }
+    </script>
+  </body>
+</html>
